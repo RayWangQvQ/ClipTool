@@ -3,7 +3,8 @@ using Volo.Abp.Modularity;
 
 namespace Ray.ClipTool;
 
-[DependsOn(typeof(AbpAutofacModule))]
+[DependsOn(typeof(AbpAutofacModule),
+    typeof(ClipToolAppServiceModule))]
 public class ClipToolModule : AbpModule
 {
 }

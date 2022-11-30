@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.DependencyInjection;
 
-namespace Ray.ClipTool;
+namespace Ray.ClipTool.AppService;
 
 public class HelloWorldService : ITransientDependency
 {
