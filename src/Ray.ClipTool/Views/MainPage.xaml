@@ -16,16 +16,14 @@
                 
             <Label 
                 x:Name="HelloLab"
-                Text="{Binding HelloText}"
+                Text="Hello word"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
-            
-            <Label 
-                Text="Welcome! This is a MAUI startup template for the ABP Framework"
-                SemanticProperties.HeadingLevel="Level2"
-                FontSize="18"
-                HorizontalOptions="Center" />
+
+            <Entry Text="{Binding InputShareLink}" Placeholder="请输入DouYin短视频的分享链接" PlaceholderColor="Green"></Entry>
+
+            <Entry Text="{Binding Result}"></Entry>
 
             <Button 
                 x:Name="CounterBtn"

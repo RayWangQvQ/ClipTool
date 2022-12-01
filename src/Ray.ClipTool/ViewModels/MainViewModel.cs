@@ -12,14 +12,13 @@ namespace Ray.ClipTool.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged,ISingletonDependency
     {
-        private readonly HelloWorldService _helloWorldService;
+        private readonly DouYinAppService _douYinAppService;
 
-        public MainViewModel(HelloWorldService helloWorldService)
+        public MainViewModel(DouYinAppService douYinAppService)
         {
-            _helloWorldService = helloWorldService;
+            _douYinAppService = douYinAppService;
 
             ButtonText = "Click me";
-            HelloText = _helloWorldService.SayHello();
             ClickCommand = new Command(DoClick);
         }
 
@@ -27,7 +26,9 @@ namespace Ray.ClipTool.ViewModels
 
         public string ButtonText { get; set; }
 
-        public string HelloText { get; set; }
+        public string InputShareLink { get; set; }
+
+        public string Result { get; set; }
 
         public Command ClickCommand { get; set; }
 
@@ -37,7 +38,10 @@ namespace Ray.ClipTool.ViewModels
 
             ButtonText = $"Clicked {ClickTimes} time";
 
-            OnPropertyChanged(nameof(this.ButtonText));
+            OnPropertyChanged(nameof(ButtonText));
+
+            Result = _douYinAppService.Do(InputShareLink);
+            OnPropertyChanged(nameof(Result));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
