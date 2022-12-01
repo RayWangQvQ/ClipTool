@@ -63,5 +63,7 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Ray.ClipTool.AppService\Ray.ClipTool.AppService.csproj" />
 	</ItemGroup>
+	
+	<ProjectExtensions><VisualStudio><UserProperties XamarinHotReloadDebuggerTimeoutExceptionRayClipToolHideInfoBar="True" /></VisualStudio></ProjectExtensions>
 
 </Project>
