@@ -21,7 +21,7 @@ public class HelloWorldService : ITransientDependency
     {
         Logger.LogInformation("Hello World!");
 
-        await _douYinAppService.DoAsync("rw7sEKJ");
+        await _douYinAppService.DoAsync("8.79 YzT:/ 【抖音】『看看 <WeTikTok的作品> # tiktok # 搞笑 』\n复制整段内容打开\n——————\nhttps://v.douyin.com/rw7sEKJ/");
 
     }
 }

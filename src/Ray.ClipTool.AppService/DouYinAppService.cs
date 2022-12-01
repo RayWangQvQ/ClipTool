@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Ray.ClipTool.Agent;
+using Ray.ClipTool.AppService.Helpers;
 using Volo.Abp.DependencyInjection;
 
 namespace Ray.ClipTool.AppService;
@@ -28,7 +29,7 @@ public class DouYinAppService : ITransientDependency
 
     private async Task<string> GetVideoIdFromShareLinkAsync(string shareLink)
     {
-        var code = shareLink;
+        var code = RegexHelper.SubstringSingle(shareLink, "https://v.douyin.com/","/");
 
         //var re = await _douYinApi.VisitShareLinkAsync(code);
         var re = _douYinApi.VisitShareLinkAsync(code).Result;
