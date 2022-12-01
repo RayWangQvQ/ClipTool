@@ -1,20 +1,31 @@
-﻿using Volo.Abp.DependencyInjection;
+﻿using Ray.ClipTool.Agent;
+using Volo.Abp.DependencyInjection;
 
 namespace Ray.ClipTool.AppService;
 
 public class DouYinAppService : ITransientDependency
 {
-    public string Do(string shareLink)
+    private readonly IDouYinApi _douYinApi;
+
+    public DouYinAppService(IDouYinApi douYinApi)
     {
-        var videoId = GetVideoIdFromShareLink(shareLink);
+        _douYinApi = douYinApi;
+    }
+
+    public async Task<string> DoAsync(string shareLink)
+    {
+        var videoId = await GetVideoIdFromShareLinkAsync(shareLink);
 
         var videoInfo = GetClipDetailInfo(videoId);
 
         return GetNoWaterMarkUrl(videoInfo);
     }
 
-    private string GetVideoIdFromShareLink(string shareLink)
+    private async Task<string> GetVideoIdFromShareLinkAsync(string shareLink)
     {
+        var code = shareLink;
+
+        var re=await _douYinApi.VisitShareLinkAsync(code);
         return "";
     }
 

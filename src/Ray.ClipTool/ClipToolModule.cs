@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Autofac;
+﻿using Ray.ClipTool.AppService;
+using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 
 namespace Ray.ClipTool;

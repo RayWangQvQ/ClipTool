@@ -40,7 +40,7 @@ namespace Ray.ClipTool.ViewModels
 
             OnPropertyChanged(nameof(ButtonText));
 
-            Result = _douYinAppService.Do(InputShareLink);
+            Result = _douYinAppService.DoAsync(InputShareLink).Result;
             OnPropertyChanged(nameof(Result));
         }
 

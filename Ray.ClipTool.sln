@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.ClipTool", "src\Ray.Cli
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{88D70326-FD7B-4F90-8CDE-D99B7819AF7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ray.ClipTool.AppService", "src\Ray.ClipTool.AppService\Ray.ClipTool.AppService.csproj", "{8333AFDC-594F-4B2E-948D-934F51B69618}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ray.ClipTool.AppService", "src\Ray.ClipTool.AppService\Ray.ClipTool.AppService.csproj", "{8333AFDC-594F-4B2E-948D-934F51B69618}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ray.ClipTool.Agent", "src\Ray.ClipTool.Agent\Ray.ClipTool.Agent.csproj", "{66CF3FAD-AB6E-420D-8C59-1360B7601BB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{8333AFDC-594F-4B2E-948D-934F51B69618}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8333AFDC-594F-4B2E-948D-934F51B69618}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8333AFDC-594F-4B2E-948D-934F51B69618}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66CF3FAD-AB6E-420D-8C59-1360B7601BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66CF3FAD-AB6E-420D-8C59-1360B7601BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66CF3FAD-AB6E-420D-8C59-1360B7601BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66CF3FAD-AB6E-420D-8C59-1360B7601BB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B22CB1A1-A9D3-4970-9F00-50307BCCCAB7} = {88D70326-FD7B-4F90-8CDE-D99B7819AF7E}
 		{8333AFDC-594F-4B2E-948D-934F51B69618} = {88D70326-FD7B-4F90-8CDE-D99B7819AF7E}
+		{66CF3FAD-AB6E-420D-8C59-1360B7601BB3} = {88D70326-FD7B-4F90-8CDE-D99B7819AF7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {61F7FB11-1E47-470C-91E2-47F8143E1572}

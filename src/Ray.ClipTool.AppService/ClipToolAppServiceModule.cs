@@ -1,9 +1,11 @@
-﻿using Volo.Abp.Autofac;
+﻿using Ray.ClipTool.Agent;
+using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 
-namespace Ray.ClipTool;
+namespace Ray.ClipTool.AppService;
 
-[DependsOn(typeof(AbpAutofacModule))]
+[DependsOn(typeof(AbpAutofacModule),
+    typeof(ClipToolAgentModule))]
 public class ClipToolAppServiceModule : AbpModule
 {
 }
