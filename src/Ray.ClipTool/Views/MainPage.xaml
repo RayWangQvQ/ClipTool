@@ -40,23 +40,36 @@
                     BackgroundColor="Silver"/>
             </VerticalStackLayout>
 
-            <Button 
-                x:Name="CounterBtn"
-                Text="Click"
-                SemanticProperties.Hint="Get video"
-                HorizontalOptions="Center"
-                Command="{Binding ClickCommand}"/>
+            <HorizontalStackLayout 
+                HorizontalOptions="Center">
+                <Button 
+                    Text="Get"
+                    SemanticProperties.Hint="Get video"
+                    Margin="10,10"
+                    Command="{Binding ClickCommand}"/>
+                <Button 
+                    Text="Clear"
+                    SemanticProperties.Hint="Clear all"
+                    Margin="10,10"
+                    Command="{Binding ClearCommand}"/>
+            </HorizontalStackLayout>
 
-            <WebView 
-                x:Name="ClipWebView"
-                BackgroundColor="Grey"
-                HeightRequest="200"
-                WidthRequest="300"
-                Source="{Binding Result}"/>
-            <Button
-                Text="Open with browser"
-                HorizontalOptions="Center"
-                Command="{Binding OpenBrowserCommand}"/>
+            <VerticalStackLayout 
+                x:Name="WebViewLayout">
+                <WebView
+                    x:Name="ClipWebView"
+                    BackgroundColor="Grey"
+                    HeightRequest="200"
+                    WidthRequest="300"
+                    Source="{Binding Result}"/>
+
+                <Button
+                    Text="Open with browser"
+                    HorizontalOptions="Center"
+                    Margin="0,10"
+                    Command="{Binding OpenBrowserCommand}"/>
+            </VerticalStackLayout>
+
 
         </VerticalStackLayout>
     </ScrollView>

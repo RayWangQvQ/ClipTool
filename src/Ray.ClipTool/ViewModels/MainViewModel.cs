@@ -19,8 +19,8 @@ namespace Ray.ClipTool.ViewModels
             _douYinAppService = douYinAppService;
 
             ClickCommand = new Command(DoClickAsync);
-
-            OpenBrowserCommand=new Command(OpenBrowserAsync);
+            ClearCommand = new Command(DoClear);
+            OpenBrowserCommand =new Command(OpenBrowserAsync);
         }
 
         public string InputShareLink { get; set; }
@@ -29,13 +29,24 @@ namespace Ray.ClipTool.ViewModels
 
         public Command ClickCommand { get; set; }
 
+        public Command ClearCommand { get; set; }
+
         public Command OpenBrowserCommand { get; set; }
 
         private async void DoClickAsync()
         {
             Result = await _douYinAppService.DoAsync(InputShareLink);
-            MessagingCenter.Send(this, "success");
             OnPropertyChanged(nameof(Result));
+            MessagingCenter.Send(this, "success");
+        }
+
+        private void DoClear()
+        {
+            InputShareLink = "";
+            Result = "";
+            OnPropertyChanged(nameof(InputShareLink));
+            OnPropertyChanged(nameof(Result));
+            MessagingCenter.Send(this, "cleared");
         }
 
         private async void OpenBrowserAsync()
