@@ -1,11 +1,12 @@
-﻿namespace Ray.ClipTool;
+﻿
+namespace Ray.ClipTool;
 
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
+    public App()
+    {
+        InitializeComponent();
 
-		MainPage = new AppShell();
-	}
+        MainPage = new AppShell();
+    }
 }

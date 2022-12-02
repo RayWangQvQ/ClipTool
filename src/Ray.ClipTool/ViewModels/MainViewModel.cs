@@ -18,13 +18,10 @@ namespace Ray.ClipTool.ViewModels
         {
             _douYinAppService = douYinAppService;
 
-            ButtonText = "Click me";
             ClickCommand = new Command(DoClickAsync);
+
+            OpenBrowserCommand=new Command(OpenBrowserAsync);
         }
-
-        public int ClickTimes { get; set; }
-
-        public string ButtonText { get; set; }
 
         public string InputShareLink { get; set; }
 
@@ -32,17 +29,19 @@ namespace Ray.ClipTool.ViewModels
 
         public Command ClickCommand { get; set; }
 
+        public Command OpenBrowserCommand { get; set; }
+
         private async void DoClickAsync()
         {
-            ClickTimes++;
-
-            ButtonText = $"Clicked {ClickTimes} time";
-
-            OnPropertyChanged(nameof(ButtonText));
-
             Result = await _douYinAppService.DoAsync(InputShareLink);
             MessagingCenter.Send(this, "success");
             OnPropertyChanged(nameof(Result));
+        }
+
+        private async void OpenBrowserAsync()
+        {
+            if (!string.IsNullOrWhiteSpace(Result))
+                await Launcher.OpenAsync(Result);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

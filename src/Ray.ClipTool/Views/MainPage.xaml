@@ -6,35 +6,57 @@
     <ScrollView>
         <VerticalStackLayout 
             Spacing="25" 
-            Padding="30,0" 
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
+            Padding="20,20">
 
             <Label 
                 x:Name="HelloLab"
-                Text="Hello word"
+                Text="DouYin"
                 SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
+                FontSize="24"
                 HorizontalOptions="Center" />
 
-            <Entry 
-                Text="{Binding InputShareLink}"
-                Placeholder="请输入DouYin短视频的分享链接"
-                PlaceholderColor="Grey" />
+            <VerticalStackLayout>
+                <Label 
+                    Text="分享链接："
+                    SemanticProperties.HeadingLevel="Level1"
+                    HorizontalOptions="Start" />
+                <Editor 
+                        Text="{Binding InputShareLink}"
+                        AutoSize="TextChanges"
+                        Placeholder="请输入DouYin短视频的分享链接"
+                        BackgroundColor="GhostWhite" />
 
-            <Entry Text="{Binding Result}"></Entry>
+            </VerticalStackLayout>
+
+            <VerticalStackLayout>
+                <Label 
+                    Text="结果："
+                    SemanticProperties.HeadingLevel="Level1"
+                    HorizontalOptions="Start" />
+                <Editor 
+                    Text="{Binding Result}" 
+                    AutoSize="TextChanges"
+                    IsReadOnly="True" 
+                    BackgroundColor="Silver"/>
+            </VerticalStackLayout>
 
             <Button 
                 x:Name="CounterBtn"
-                Text="{Binding ButtonText}"
-                SemanticProperties.Hint="Counts the number of times you click"
+                Text="Click"
+                SemanticProperties.Hint="Get video"
                 HorizontalOptions="Center"
-                Command="{Binding ClickCommand}"
-                />
+                Command="{Binding ClickCommand}"/>
+
+            <WebView 
+                x:Name="ClipWebView"
+                BackgroundColor="Grey"
+                HeightRequest="200"
+                WidthRequest="300"
+                Source="{Binding Result}"/>
+            <Button
+                Text="Open with browser"
+                HorizontalOptions="Center"
+                Command="{Binding OpenBrowserCommand}"/>
 
         </VerticalStackLayout>
     </ScrollView>
