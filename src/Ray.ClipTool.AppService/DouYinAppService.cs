@@ -1,18 +1,22 @@
 ﻿using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Ray.ClipTool.Agent;
+using Ray.ClipTool.Agent.DouYin;
 using Ray.ClipTool.AppService.Helpers;
+using System;
 using Volo.Abp.DependencyInjection;
 
 namespace Ray.ClipTool.AppService;
 
 public class DouYinAppService : ITransientDependency
 {
-    private readonly IDouYinApi _douYinApi;
+    private readonly IVDouYinApi _ivDouYinApi;
+    private readonly IIesDouYinApi _iesDouYinApi;
 
-    public DouYinAppService(IDouYinApi douYinApi)
+    public DouYinAppService(IVDouYinApi ivDouYinApi, IIesDouYinApi iesDouYinApi)
     {
-        _douYinApi = douYinApi;
+        _ivDouYinApi = ivDouYinApi;
+        _iesDouYinApi = iesDouYinApi;
         Logger = NullLogger<DouYinAppService>.Instance;
     }
 
@@ -20,32 +24,44 @@ public class DouYinAppService : ITransientDependency
 
     public async Task<string> DoAsync(string shareLink)
     {
+        Logger.LogInformation("The original share text: {share}", shareLink);
+
         var videoId = await GetVideoIdFromShareLinkAsync(shareLink);
 
-        var videoInfo = GetClipDetailInfo(videoId);
+        var videoInfo = await GetClipDetailInfoAsync(videoId);
 
         return GetNoWaterMarkUrl(videoInfo);
     }
 
     private async Task<string> GetVideoIdFromShareLinkAsync(string shareLink)
     {
-        var code = RegexHelper.SubstringSingle(shareLink, "https://v.douyin.com/","/");
+        var code = RegexHelper.SubstringSingle(shareLink, "https://v.douyin.com/", "/");
 
         //var re = await _douYinApi.VisitShareLinkAsync(code);
-        var re = _douYinApi.VisitShareLinkAsync(code).Result;
+        var re = _ivDouYinApi.VisitShareLinkAsync(code).Result;
 
         var id = re.RequestMessage.RequestUri.AbsolutePath.Replace("/video/", "");
         Logger.LogInformation("Video Id:{id}", id);
         return id;
     }
 
-    private string GetClipDetailInfo(string videoId)
+    private async Task<string> GetClipDetailInfoAsync(string videoId)
     {
-        return videoId;
+        var re = await _iesDouYinApi.DetailInfoAsync(videoId);
+        var url = re.item_list
+            .FirstOrDefault()
+            ?.video
+            .play_addr
+            .url_list
+            .FirstOrDefault();
+        Logger.LogInformation("url: {url}",url);
+        return url ?? "";
     }
 
-    private string GetNoWaterMarkUrl(string videoId)
+    private string GetNoWaterMarkUrl(string source)
     {
-        return $"{DateTime.Now:s} {videoId}";
+        source = source.Replace("playwm", "play");
+        Logger.LogInformation("url without water mark: {url}",source);
+        return source;
     }
 }

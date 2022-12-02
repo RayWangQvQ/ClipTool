@@ -1,8 +1,8 @@
 ﻿using Refit;
 
-namespace Ray.ClipTool.Agent
+namespace Ray.ClipTool.Agent.DouYin
 {
-    public interface IDouYinApi
+    public interface IVDouYinApi
     {
         [Get("/{code}/")]
         Task<HttpResponseMessage> VisitShareLinkAsync(string code);
