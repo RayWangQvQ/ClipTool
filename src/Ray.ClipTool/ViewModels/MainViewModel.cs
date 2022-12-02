@@ -10,7 +10,7 @@ using Volo.Abp.DependencyInjection;
 
 namespace Ray.ClipTool.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged,ISingletonDependency
+    public class MainViewModel : INotifyPropertyChanged, ISingletonDependency
     {
         private readonly DouYinAppService _douYinAppService;
 
@@ -19,7 +19,7 @@ namespace Ray.ClipTool.ViewModels
             _douYinAppService = douYinAppService;
 
             ButtonText = "Click me";
-            ClickCommand = new Command(DoClick);
+            ClickCommand = new Command(DoClickAsync);
         }
 
         public int ClickTimes { get; set; }
@@ -32,7 +32,7 @@ namespace Ray.ClipTool.ViewModels
 
         public Command ClickCommand { get; set; }
 
-        private void DoClick()
+        private async void DoClickAsync()
         {
             ClickTimes++;
 
@@ -40,7 +40,8 @@ namespace Ray.ClipTool.ViewModels
 
             OnPropertyChanged(nameof(ButtonText));
 
-            Result = _douYinAppService.DoAsync(InputShareLink).Result;
+            Result = await _douYinAppService.DoAsync(InputShareLink);
+            MessagingCenter.Send(this, "success");
             OnPropertyChanged(nameof(Result));
         }
 

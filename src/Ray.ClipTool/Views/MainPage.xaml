@@ -24,7 +24,7 @@
             <Entry 
                 Text="{Binding InputShareLink}"
                 Placeholder="请输入DouYin短视频的分享链接"
-                PlaceholderColor="Green" />
+                PlaceholderColor="Grey" />
 
             <Entry Text="{Binding Result}"></Entry>
 
