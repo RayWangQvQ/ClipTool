@@ -17,7 +17,8 @@
 
             <VerticalStackLayout>
                 <Label 
-                    Text="分享链接："
+                    Text="Share link："
+                    FontSize="18"
                     SemanticProperties.HeadingLevel="Level1"
                     HorizontalOptions="Start" />
                 <Editor 
@@ -25,44 +26,54 @@
                         AutoSize="TextChanges"
                         Placeholder="请输入DouYin短视频的分享链接"
                         BackgroundColor="GhostWhite" />
-
+                <HorizontalStackLayout 
+                    HorizontalOptions="Center">
+                    <Button 
+                        Text="Convert"
+                        SemanticProperties.Hint="Get video"
+                        Margin="0,10"
+                        Command="{Binding ClickCommand}"/>
+                </HorizontalStackLayout>
             </VerticalStackLayout>
 
-            <VerticalStackLayout>
+            <VerticalStackLayout 
+                x:Name="ResultLayout">
                 <Label 
-                    Text="结果："
+                    Text="Result："
+                    FontSize="18"
                     SemanticProperties.HeadingLevel="Level1"
                     HorizontalOptions="Start" />
                 <Editor 
                     Text="{Binding Result}" 
                     AutoSize="TextChanges"
-                    IsReadOnly="True" 
-                    BackgroundColor="Silver"/>
+                    IsReadOnly="True" />
+                <HorizontalStackLayout 
+                    HorizontalOptions="Center">
+                    <Button 
+                        Text="Copy"
+                        Margin="10,10"
+                        Command="{Binding CopyResultCommand}"/>
+                    <Button 
+                        Text="Clear"
+                        Margin="10,10"
+                        SemanticProperties.Hint="Clear all"
+                        Command="{Binding ClearCommand}"/>
+                </HorizontalStackLayout>
             </VerticalStackLayout>
-
-            <HorizontalStackLayout 
-                HorizontalOptions="Center">
-                <Button 
-                    Text="Get"
-                    SemanticProperties.Hint="Get video"
-                    Margin="10,10"
-                    Command="{Binding ClickCommand}"/>
-                <Button 
-                    Text="Clear"
-                    SemanticProperties.Hint="Clear all"
-                    Margin="10,10"
-                    Command="{Binding ClearCommand}"/>
-            </HorizontalStackLayout>
 
             <VerticalStackLayout 
                 x:Name="WebViewLayout">
+                <Label 
+                    Text="Preview："
+                    FontSize="18"
+                    SemanticProperties.HeadingLevel="Level1"
+                    HorizontalOptions="Start" />
                 <WebView
                     x:Name="ClipWebView"
                     BackgroundColor="Grey"
                     HeightRequest="200"
                     WidthRequest="300"
                     Source="{Binding Result}"/>
-
                 <Button
                     Text="Open with browser"
                     HorizontalOptions="Center"

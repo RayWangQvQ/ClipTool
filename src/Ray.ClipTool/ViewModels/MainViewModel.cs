@@ -19,6 +19,7 @@ namespace Ray.ClipTool.ViewModels
             _douYinAppService = douYinAppService;
 
             ClickCommand = new Command(DoClickAsync);
+            CopyResultCommand = new Command(DoCopyResultAsync);
             ClearCommand = new Command(DoClear);
             OpenBrowserCommand =new Command(OpenBrowserAsync);
         }
@@ -29,6 +30,8 @@ namespace Ray.ClipTool.ViewModels
 
         public Command ClickCommand { get; set; }
 
+        public Command CopyResultCommand { get; set; }
+
         public Command ClearCommand { get; set; }
 
         public Command OpenBrowserCommand { get; set; }
@@ -38,6 +41,12 @@ namespace Ray.ClipTool.ViewModels
             Result = await _douYinAppService.DoAsync(InputShareLink);
             OnPropertyChanged(nameof(Result));
             MessagingCenter.Send(this, "success");
+        }
+
+        private async void DoCopyResultAsync()
+        {
+            await Clipboard.Default.SetTextAsync(Result);
+            MessagingCenter.Send(this, "copied");
         }
 
         private void DoClear()
